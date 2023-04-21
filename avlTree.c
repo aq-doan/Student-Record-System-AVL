@@ -1,3 +1,5 @@
+
+
 #include <stdlib.h>
 #include <stdio.h>
 #include "avlTree.h"
@@ -91,25 +93,19 @@ NodePtr rebalance_avl(NodePtr self, int data) {
 	self->height = max_value(get_tree_height(self->left), get_tree_height(self->right)) + 1;
 	count = balance_tree(self);
 
-	// If the tree is left-heavy
 	if (count > 1) {
-		// Check if left-left case
 		if (get_tree_height(self->left->left) >= get_tree_height(self->left->right)) {
 			self = rotation_r(self);
 		}
-		// left-right case
 		else {
 			self->left = rotation_l(self->left);
 			self = rotation_r(self);
 		}
 	}
-	// If the tree is right-heavy
 	else if (count < -1) {
-		// Check if right-right case
 		if (get_tree_height(self->right->right) >= get_tree_height(self->right->left)) {
 			self = rotation_l(self);
 		}
-		// right-left case
 		else {
 			self->right = rotation_r(self->right);
 			self = rotation_l(self);
@@ -162,7 +158,6 @@ NodePtr rebalance_avl(NodePtr self, int data) {
 
 */
 NodePtr in_node_tree(NodePtr self, int data) {
-	/* check if found correct the location, then insert */
 	if (self == NULL) {
 		self = malloc(sizeof * self);
 		self->id = data;
@@ -182,27 +177,24 @@ NodePtr in_node_tree(NodePtr self, int data) {
 
 	self->height = max_value(get_tree_height(self->left), get_tree_height(self->right)) + 1;
 
-	/* Check if a rotation is needed to balance the tree */
+	//check balance
 	int balance = balance_tree(self);
 
+	//will need to examine left-left, left-right, right-right and right-left cases
 	if (balance > 1 && data < self->left->id) {
-		/* Left Left Case */
 		return rotation_r(self);
 	}
 
 	if (balance < -1 && data > self->right->id) {
-		/* Right Right Case */
 		return rotation_l(self);
 	}
 
 	if (balance > 1 && data > self->left->id) {
-		/* Left Right Case */
 		self->left = rotation_l(self->left);
 		return rotation_r(self);
 	}
 
 	if (balance < -1 && data < self->right->id) {
-		/* Right Left Case */
 		self->right = rotation_r(self->right);
 		return rotation_l(self);
 	}

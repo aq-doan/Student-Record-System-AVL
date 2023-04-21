@@ -20,9 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="avlTree.h" />
+    <ClInclude Include="linkedlist.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="avlTree.c" />
+    <ClCompile Include="linkedlist.c" />
+    <ClCompile Include="main.c" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
