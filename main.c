@@ -5,6 +5,13 @@
 #include<string.h>
 #include "linkedlist.h"
 #include "avlTree.h"
+/*
+* NOTE: This file is an adaptation of the learning material of the University of Tasmania
+* KIT205, produced by Robert Ollington
+* The intial code can be found in the following page
+* https://mylo.utas.edu.au/d2l/le/content/566489/viewContent/4972074/View
+* This version is modified by Anh Quan Doan for the first Assignment of KIT205
+*/
 
 #define LOWER_SELECTION 0
 #define HIGHER_SELECTION 7
@@ -114,6 +121,7 @@ void main() {
 
 }
 
+//test function for linkedlist functions
 void test_linkedlist() {
 	List list = create_list(); //test create_list()
 	if (list.head == NULL) {
@@ -126,7 +134,7 @@ void test_linkedlist() {
 	// Test insert_list
 	insert_list(&list, "KIT123");
 	insert_list(&list, "KIT200");
-	int compare = strcmp(list.head->unit_name, "KIT123");
+	int compare = strcmp(&list.head->unit_name, "KIT123");
 	int compare2 = strcmp(list.head->next->unit_name, "KIT200");
 	//compare whether the input is equal to the expected 
 	if (list.head != NULL && compare == 0 && compare2 == 0) {
@@ -154,13 +162,62 @@ void test_linkedlist() {
 		printf("find_list failed.\n");
 	}
 
-	// Test destroy_list function
+	//test destroy
 	destroy_list(&list);
-	if (list.head == NULL) {
-		printf("destroy_list test passed.\n");
+	if (list.head == NULL) { //if the list is empty
+		printf("destroy_list sucess.\n");
 	}
 	else {
-		printf("destroy_list test failed.\n");
+		printf("destroy_list failed.\n");
+	}
+}
+void test_avltree() {
+	AVL tree = new_avl();
+
+	//sample values
+	tree_in(&tree, 5);
+	tree_in(&tree, 3);
+	tree_in(&tree, 7);
+	tree_in(&tree, 1);
+	tree_in(&tree, 4);
+	tree_in(&tree, 6);
+	tree_in(&tree, 9);
+
+	// Test the search function
+	if (tree_search(&tree, 4)) {
+		printf("tree_search() success.\n");
+	}
+	else {
+		printf("tree_search() failed.\n");
+	}
+
+	// Test count 
+	if (count_avl(&tree) == 7) {
+		printf("count_avl() success.\n");
+	}
+	else {
+		printf("count_avl() failed.\n");
+	}
+
+	// Test print 
+	printf("Expect 1 3 4 5 6 7 9\n");
+	print_tree(&tree);
+
+	//test calculate_branch_min and get_tree_height
+	printf("Minimum value in AV:: %d\n", calculate_branch_min(tree));
+	printf("Height AVL: %d\n", get_tree_height(tree));
+
+	// Test delete 
+	tree_delete(&tree, 5);
+	printf("Expect 1 3 4 6 7 9\n");
+	print_tree(&tree);
+
+	tree_destroy(&tree);
+	if (&tree == NULL) {
+		printf("destroy_tree success.\n");
+	}
+	else {
+		printf("destroy_tree failed.\n");
 	}
 }
 
