@@ -5,6 +5,7 @@
 #include<string.h>
 #include "linkedlist.h"
 #include "avlTree.h"
+#include <time.h>
 /*
 * NOTE: This file is an adaptation of the learning material of the University of Tasmania
 * KIT205, produced by Robert Ollington
@@ -118,7 +119,21 @@ void main() {
 	if (list_of_unit.head != NULL) {
 		destroy_list(&list_of_unit);
 	}
+	
+	/*
+	AVL tree = new_avl();
+		clock_t start = clock();
 
+		for (int i = 0; i < 80000; i++)
+		{
+			int a = rand();
+			tree_in(&tree, a);
+		}
+
+		clock_t diff = clock() - start;
+		long msec = diff * 1000 / CLOCKS_PER_SEC;
+		printf("Operation took %d milliseconds\n\n", msec);
+		*/
 }
 
 //test function for linkedlist functions

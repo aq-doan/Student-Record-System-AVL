@@ -18,17 +18,13 @@ typedef struct avl {
 	NodePtr root;
 } AVL;
 
-
 AVL new_avl();
 
-
 NodePtr tree_search(AVL* self, int value);
-
 
 void tree_in(AVL* self, int value);
 
 void tree_delete(AVL* self, int value);
-
 
 void tree_destroy(AVL* self);
 
