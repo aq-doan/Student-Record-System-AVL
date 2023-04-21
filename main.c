@@ -120,7 +120,7 @@ void main() {
 		destroy_list(&list_of_unit);
 	}
 	
-	/*
+	/* to collect the timing
 	AVL tree = new_avl();
 		clock_t start = clock();
 
